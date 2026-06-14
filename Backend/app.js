@@ -20,7 +20,7 @@ app.use((req, res, next) => {
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; " +
         "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
         "img-src 'self' data: https://res.cloudinary.com; " +
-        "connect-src 'self' https://res.cloudinary.com;"
+        "connect-src 'self' https://res.cloudinary.com https://api.cloudinary.com;"
     );
     next();
 });
