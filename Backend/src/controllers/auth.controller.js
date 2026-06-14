@@ -17,8 +17,8 @@ class AuthController {
 
             res.redirect('/auth/login?registered=true');
         } catch (error) {
-            console.error(error);
-            res.render('pages/register', { error: 'Error al registrar usuario', layout: false });
+            console.error('❌ Error detallado en registro:', error);
+            res.render('pages/register', { error: 'Error al registrar usuario: ' + (error.message || 'Error desconocido'), layout: false });
         }
     }
 
