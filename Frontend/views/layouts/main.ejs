@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORVIAN | <%= title %></title>
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.add('light-mode');
+        }
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <% if (user) { %>
+            <aside class="sidebar">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>ORVIAN</span>
+                </div>
+
+                <!-- Gamificación: Nivel de Productividad -->
+                <div class="level-container">
+                    <div class="level-info">
+                        <span class="level-badge">NIVEL <%= user.level %></span>
+                        <span class="level-xp"><%= user.points || 0 %> XP</span>
+                    </div>
+                    <div class="level-bar-bg">
+                        <div class="level-bar-fill" style="--progress: <%= user.levelProgress %>%"></div>
+                    </div>
+                </div>
+                
+                <nav class="nav-menu">
+                    <ul>
+                        <li class="nav-item">
+                            <a href="/dashboard" class="nav-link <%= page === 'dashboard' ? 'active' : '' %>">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tasks" class="nav-link <%= page === 'tasks' ? 'active' : '' %>">
+                                <i class="fas fa-check-double"></i>
+                                <span>Mis Tareas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/calendar" class="nav-link <%= page === 'calendar' ? 'active' : '' %>">
+                                <i class="fas fa-calendar-day"></i>
+                                <span>Calendario</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kanban" class="nav-link <%= page === 'kanban' ? 'active' : '' %>">
+                                <i class="fas fa-columns"></i>
+                                <span>Tablero Kanban</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/categories" class="nav-link <%= page === 'categories' ? 'active' : '' %>">
+                                <i class="fas fa-tags"></i>
+                                <span>Categorias</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/profile" class="nav-link <%= page === 'profile' ? 'active' : '' %>">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Mi Perfil</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="nav-link theme-switch" id="themeToggle" style="cursor: pointer;">
+                        <i class="fas fa-moon"></i>
+                        <span>Modo Oscuro</span>
+                    </div>
+                    <a href="/auth/logout" class="nav-link logout-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <header class="topbar">
+                    <div class="topbar-left">
+                        <h2 class="view-title"><%= title %></h2>
+                    </div>
+                    <div class="topbar-right">
+                        <div class="notifications-bell" id="notifBell">
+                            <i class="fas fa-bell"></i>
+                            <span id="notifCount">0</span>
+                            <div id="notifDropdown" class="card">
+                                <h4>Notificaciones</h4>
+                                <div id="notifList">
+                                    <p class="text-secondary">Cargando alertas...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <img src="/img/avatars/<%= user.avatar || 'default-avatar.png' %>" alt="Profile" class="avatar-sm">
+                            <span>Hola, <strong><%= user.name %></strong></span>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="view-container">
+                    <%- body %>
+                </section>
+            </main>
+        <% } else { %>
+            <div class="auth-layout">
+                <%- body %>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/notifications.js"></script>
+</body>
+</html>

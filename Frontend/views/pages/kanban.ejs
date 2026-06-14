@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/css/kanban.css">
+
+<div class="kanban-header">
+    <h1>Tablero Kanban</h1>
+    <p class="text-secondary">Visualiza el flujo de tus tareas.</p>
+</div>
+
+<div class="filter-bar card" style="margin-bottom: 20px; padding: 15px; display: flex; gap: 15px; align-items: center; background: var(--glass-bg);">
+    <div style="flex-grow: 1;">
+        <input type="text" id="kanbanSearch" name="kanbanSearch" placeholder="Buscar en el tablero..." 
+               style="width: 100%; padding: 8px 15px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary);">
+    </div>
+    <select id="kanbanPriority" name="kanbanPriority" style="padding: 8px; border-radius: 8px; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color);">
+        <option value="">Todas las Prioridades</option>
+        <option value="Baja">Baja</option>
+        <option value="Media">Media</option>
+        <option value="Alta">Alta</option>
+        <option value="Urgente">Urgente</option>
+    </select>
+</div>
+
+<div class="kanban-board">
+    <% const states = ['Pendiente', 'En progreso', 'Completada', 'Cancelada']; %>
+    <% states.forEach(estado => { %>
+        <div class="kanban-column" data-status="<%= estado %>">
+            <div class="column-header">
+                <h3><%= estado %></h3>
+                <span class="count"><%= tasks.filter(t => (t.status || 'Pendiente') === estado).length %></span>
+            </div>
+            <div class="task-cards" id="list-<%= estado.toLowerCase().replace(' ', '-') %>">
+                <% tasks.filter(t => (t.status || 'Pendiente') === estado).forEach(tarea => { %>
+                    <div class="card kanban-card" draggable="true" data-id="<%= tarea.id %>" style="--kanban-border: <%= tarea.category_color || 'var(--color-main)' %>">
+                        <span class="badge badge-priority <%= (tarea.priority || 'Media').toLowerCase() %>"><%= tarea.priority %></span>
+                        <h4><%= tarea.title %></h4>
+                        <% if (tarea.category_name) { %>
+                            <small class="cat-label">
+                                <i class="fas fa-tag"></i> <%= tarea.category_name %>
+                            </small>
+                        <% } %>
+
+                        <% if (tarea.subtask_total > 0) { %>
+                            <div class="kanban-progress">
+                                <div class="progress-info">
+                                    <span>Checklist</span>
+                                    <span><%= tarea.subtask_completed %>/<%= tarea.subtask_total %></span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="--progress: <%= (tarea.subtask_completed / tarea.subtask_total) * 100 %>%;"></div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+<% }) %>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<style>
+    .cat-label { font-size: 0.75rem; font-weight: 600; opacity: 0.8; }
+</style>
+
+<script src="/js/kanban.js"></script>

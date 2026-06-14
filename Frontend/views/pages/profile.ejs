@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/profile.css">
+<script src="/js/profile.js"></script>
+
+<div class="profile-content">
+    <div class="card profile-actions">
+        <img src="/img/avatars/<%= user.avatar || 'default-avatar.png' %>" alt="Avatar" class="avatar-large">
+        
+        <form action="/profile/avatar" method="POST" enctype="multipart/form-data" id="avatarForm">
+            <input type="file" name="avatar" id="avatarInput" style="display: none;" accept="image/*">
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('avatarInput').click()">
+                <i class="fas fa-camera"></i> Cambiar Foto
+            </button>
+        </form>
+        <p class="text-secondary" style="font-size: 0.8rem; margin-top: 10px;">JPG, PNG o GIF. Máx 2MB.</p>
+    </div>
+
+    <div class="card">
+        <form action="/profile/update" method="POST" class="profile-form">
+            <h3>Informacion Personal</h3>
+            <div class="form-group" style="margin-top: 20px;">
+                <label for="name">Nombre Completo</label>
+                <input type="text" id="name" name="name" value="<%= user.name %>" autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electronico</label>
+                <input type="email" id="email" name="email" value="<%= user.email %>" autocomplete="email">
+            </div>
+            
+            <hr class="separator">
+            
+            <h3>Cambiar Contrasena</h3>
+            <div class="form-group" style="margin-top: 15px;">
+                <label for="new_password">Nueva Contrasena</label>
+                <input type="password" id="new_password" name="new_password" autocomplete="new-password" placeholder="Solo si deseas cambiarla">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Guardar Cambios</button>
+        </form>
+    </div>
+</div>

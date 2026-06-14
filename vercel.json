@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "Backend/app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/css/(.*)",
+      "dest": "/Frontend/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/Frontend/public/js/$1"
+    },
+    {
+      "src": "/img/(.*)",
+      "dest": "/Frontend/public/img/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "Backend/app.js"
+    }
+  ]
+}

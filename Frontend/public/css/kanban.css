@@ -1,0 +1,108 @@
+.kanban-board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.kanban-column {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 180px); /* Ajuste dinámico de altura */
+}
+
+.column-header {
+    padding: 20px 15px;
+    border-bottom: none;
+    flex-shrink: 0;
+}
+
+.column-header h3 {
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+}
+
+.column-header .count {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 12px;
+    font-weight: 700;
+}
+
+.task-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    overflow-y: auto; /* Scroll vertical interno */
+    flex-grow: 1;
+}
+
+/* Scrollbar sutil para las columnas */
+.task-cards::-webkit-scrollbar {
+    width: 5px;
+}
+
+.task-cards::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.kanban-card {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 18px;
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-top: 3px solid var(--kanban-border); /* Mantenemos el borde dinámico */
+}
+
+.kanban-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.kanban-card h4 {
+    font-size: 1rem;
+    margin: 12px 0;
+}
+
+/* Progreso Subtareas */
+.kanban-progress {
+    margin-top: 15px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+.progress-bar-bg {
+    background: rgba(255, 255, 255, 0.05);
+    height: 4px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: var(--color-success);
+    height: 100%;
+    width: var(--progress, 0%);
+    transition: width 0.5s ease-in-out;
+}
+
+.dragging {
+    transform: scale(0.9) rotate(2deg);
+    opacity: 0.7;
+    border: 2px dashed var(--color-main);
+}

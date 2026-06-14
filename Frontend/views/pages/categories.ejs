@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/css/categories.css">
+
+<div class="categories-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+    <div>
+        <h1>Categorias</h1>
+        <p class="text-secondary">Organiza tus tareas por temas y colores.</p>
+    </div>
+    <button class="btn btn-primary" id="btnNewCategory">
+        <i class="fas fa-plus"></i> Nueva Categoria
+    </button>
+</div>
+
+<div class="categories-grid">
+    <% if (!categories || categories.length === 0) { %>
+        <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 60px;">
+            <i class="fas fa-tags" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 20px;"></i>
+            <p>No tienes categorias. Crea una para organizar mejor tus tareas.</p>
+        </div>
+    <% } else { %>
+        <% categories.forEach(cat => { %>
+            <div class="card category-card" style="--cat-color: <%= cat.color %>">
+                <div class="category-info">
+                    <h3><%= cat.name %></h3>
+                </div>
+                <div class="category-actions">
+                    <a href="/categories/delete/<%= cat.id %>" class="btn-icon" onclick="return confirm('¿Eliminar esta categoria?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+</div>
+
+<!-- Modal Nueva Categoria -->
+<div id="categoryModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Nueva Categoria</h2>
+        <form action="/categories" method="POST" style="margin-top: 20px;">
+            <div class="form-group">
+                <label for="cat_name">Nombre de la Categoria</label>
+                <input type="text" id="cat_name" name="name" required placeholder="Ej. Trabajo, Personal, Estudio...">
+            </div>
+            <div class="form-group">
+                <label for="cat_color">Color Identificador</label>
+                <input type="color" id="cat_color" name="color" value="#3B82F6" style="height: 50px; padding: 5px; cursor: pointer;">
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Crear Categoria</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/categories.js"></script>

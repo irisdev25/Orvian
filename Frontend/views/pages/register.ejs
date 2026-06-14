@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORVIAN | Registro</title>
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="/js/auth.js"></script>
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <i class="fas fa-rocket"></i> ORVIAN
+            </div>
+            <h2>Crea tu cuenta</h2>
+            <p class="text-secondary" style="margin-bottom: 20px;">Comienza a gestionar tu tiempo hoy mismo</p>
+            
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="text-error" style="margin-bottom: 15px;"><i class="fas fa-exclamation-circle"></i> <%= error %></p>
+            <% } %>
+
+            <form action="/auth/register" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" required autocomplete="name" placeholder="Ej. Juan Perez">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electronico</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="tucorreo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contrasena</label>
+                    <input type="password" id="password" name="password" required autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Crear Cuenta
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                ¿Ya tienes una cuenta? <a href="/auth/login">Inicia sesion</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
