@@ -462,3 +462,139 @@ input:focus, select:focus, textarea:focus {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+/* Media Queries para Mobile & Tablet */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 70px;
+        padding: 20px 0;
+    }
+    
+    .sidebar .logo span, 
+    .sidebar .nav-link span,
+    .sidebar .level-container,
+    .sidebar .sidebar-footer span {
+        display: none;
+    }
+    
+    .sidebar .logo {
+        padding: 0;
+        justify-content: center;
+    }
+    
+    .sidebar .nav-link {
+        padding: 15px 0;
+        justify-content: center;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+    }
+    
+    .topbar {
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 280px;
+        left: -280px;
+        top: 0;
+        transition: left 0.3s ease;
+        box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .sidebar .logo span, 
+    .sidebar .nav-link span,
+    .sidebar .level-container,
+    .sidebar .sidebar-footer span {
+        display: flex;
+    }
+    
+    .sidebar .logo {
+        padding: 0 32px;
+        justify-content: flex-start;
+    }
+    
+    .sidebar .nav-link {
+        padding: 14px 32px;
+        justify-content: flex-start;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .topbar {
+        height: 70px;
+        padding: 0 15px;
+    }
+    
+    .mobile-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-primary);
+        cursor: pointer;
+        margin-right: 15px;
+    }
+    
+    .view-title {
+        font-size: 1.2rem;
+    }
+    
+    .user-info span {
+        display: none;
+    }
+    
+    .view-container {
+        padding: 20px;
+    }
+    
+    .card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 25px;
+        width: 95%;
+    }
+}
+
+/* Estilos para el elemento Toggle (Oculto por defecto en desktop) */
+.mobile-toggle {
+    display: none;
+}
+
+/* Overlay para cerrar el sidebar al tocar fuera */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 95;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
