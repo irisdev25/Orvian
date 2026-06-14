@@ -70,3 +70,23 @@
     margin: 0; 
     letter-spacing: 1px; 
 }
+
+/* Responsividad para Calendario */
+@media screen and (max-width: 768px) {
+    .calendar-card {
+        padding: 5px; /* Menos espacio interno */
+        overflow-x: auto; /* Permitir scroll horizontal */
+    }
+
+    .calendar-grid {
+        min-width: 600px; /* Forzamos un ancho mínimo para que los 7 días tengan espacio */
+    }
+
+    .calendar-day {
+        min-height: 80px; /* Días más compactos en móvil */
+    }
+
+    .day-name {
+        padding: 10px 5px;
+    }
+}
