@@ -3,21 +3,26 @@
   "builds": [
     {
       "src": "Backend/app.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "Frontend/**"
+        ]
+      }
     }
   ],
   "routes": [
     {
       "src": "/css/(.*)",
-      "dest": "/Frontend/public/css/$1"
+      "dest": "Frontend/public/css/$1"
     },
     {
       "src": "/js/(.*)",
-      "dest": "/Frontend/public/js/$1"
+      "dest": "Frontend/public/js/$1"
     },
     {
       "src": "/img/(.*)",
-      "dest": "/Frontend/public/img/$1"
+      "dest": "Frontend/public/img/$1"
     },
     {
       "src": "/(.*)",
