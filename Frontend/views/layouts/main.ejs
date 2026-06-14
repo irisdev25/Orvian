@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="user-info">
-                            <img src="/img/avatars/<%= user.avatar || 'default-avatar.png' %>" alt="Profile" class="avatar-sm">
+                            <img src="<%= user.avatar && user.avatar.startsWith('http') ? user.avatar : '/img/avatars/' + (user.avatar || 'default-avatar.png') %>" alt="Profile" class="avatar-sm">
                             <span>Hola, <strong><%= user.name %></strong></span>
                         </div>
                     </div>

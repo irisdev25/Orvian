@@ -52,8 +52,8 @@ class AuthController {
                 return res.redirect('/profile?error=No+se+selecciono+archivo');
             }
 
-            const avatarName = req.file.filename;
-            await User.updateAvatar(req.user.id, avatarName);
+            const avatarUrl = req.file.path; // Cloudinary devuelve la URL completa aquí
+            await User.updateAvatar(req.user.id, avatarUrl);
             
             res.redirect('/profile');
         } catch (error) {

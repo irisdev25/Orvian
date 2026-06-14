@@ -3,7 +3,7 @@
 
 <div class="profile-content">
     <div class="card profile-actions">
-        <img src="/img/avatars/<%= user.avatar || 'default-avatar.png' %>" alt="Avatar" class="avatar-large">
+        <img src="<%= user.avatar && user.avatar.startsWith('http') ? user.avatar : '/img/avatars/' + (user.avatar || 'default-avatar.png') %>" alt="Avatar" class="avatar-large">
         
         <form action="/profile/avatar" method="POST" enctype="multipart/form-data" id="avatarForm">
             <input type="file" name="avatar" id="avatarInput" style="display: none;" accept="image/*">
