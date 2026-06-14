@@ -1,6 +1,6 @@
 <div align="center">
 
-![Orvian Banner - Productividad Premium](file:///C:/Users/Iris%20Laya/.gemini/antigravity/brain/79f1c91a-3bed-4d80-a34f-04d40c5f9cb9/orvian_banner_1781465065729.png)
+![Orvian](file:///C:/Users/Iris%20Laya/.gemini/antigravity/brain/79f1c91a-3bed-4d80-a34f-04d40c5f9cb9/orvian_banner_1781465065729.png)
 
 # 🌌 ORVIAN
 ### *Tu Suite de Productividad de Siguiente Generación*

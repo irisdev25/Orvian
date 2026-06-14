@@ -1,6 +1,8 @@
 {
   "name": "orvian",
   "version": "1.0.0",
+  "author": "Iris.dev",
+  "license": "MIT",
   "description": "Orvian Personal Productivity App",
   "main": "Backend/app.js",
   "scripts": {

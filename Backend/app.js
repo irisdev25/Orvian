@@ -17,7 +17,7 @@ app.set('layout', 'layouts/main');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../Frontend/public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Import Routes
 const authRoutes = require('./src/routes/auth.routes');
