@@ -11,7 +11,9 @@ console.log('Intentando conectar a BD:', {
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL || `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
-    ssl: (process.env.DATABASE_URL || process.env.POSTGRES_URL) ? { rejectUnauthorized: false } : false
+    ssl: (process.env.DATABASE_URL || process.env.POSTGRES_URL) ? { rejectUnauthorized: false } : false,
+    connectionTimeoutMillis: 10000, // 10 segundos para dar tiempo a Neon a despertar
+    max: 10 // Limite de conexiones para evitar saturar el tier gratuito
 });
 
 // Probar conexion de inmediato

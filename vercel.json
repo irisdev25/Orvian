@@ -21,6 +21,14 @@
       "dest": "Frontend/public/js/$1"
     },
     {
+      "src": "/favicon.png",
+      "dest": "Frontend/public/img/favicon.png"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "Frontend/public/img/favicon.png"
+    },
+    {
       "src": "/img/(.*)",
       "dest": "Frontend/public/img/$1"
     },
