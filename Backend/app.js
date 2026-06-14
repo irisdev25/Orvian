@@ -11,6 +11,20 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../Frontend/views'));
 app.use(expressLayouts);
+// CSP Middleware para permitir recursos externos
+app.use((req, res, next) => {
+    res.setHeader(
+        "Content-Security-Policy",
+        "default-src 'self'; " +
+        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " +
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; " +
+        "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
+        "img-src 'self' data: https://res.cloudinary.com; " +
+        "connect-src 'self' https://res.cloudinary.com;"
+    );
+    next();
+});
+
 app.set('layout', 'layouts/main');
 
 // Middlewares
