@@ -537,24 +537,34 @@ input:focus, select:focus, textarea:focus {
     .topbar {
         height: 70px;
         padding: 0 15px;
+        position: relative; /* Cambiamos a relative si causa solapamiento con sticky */
     }
     
     .mobile-toggle {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
         background: var(--bg-tertiary);
         border: 1px solid var(--border-color);
         border-radius: 10px;
         color: var(--text-primary);
         cursor: pointer;
-        margin-right: 15px;
+        margin-right: 10px;
     }
     
     .view-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+    }
+    
+    .user-info {
+        padding-left: 10px;
+        margin-left: 10px;
     }
     
     .user-info span {
@@ -562,9 +572,16 @@ input:focus, select:focus, textarea:focus {
     }
     
     .view-container {
-        padding: 20px;
+        padding: 20px 15px;
     }
     
+    .welcome-section {
+        margin-top: 10px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.5rem;
+    }    
     .card {
         padding: 20px;
         border-radius: 16px;
